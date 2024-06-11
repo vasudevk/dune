@@ -1,0 +1,17 @@
+### Create Token
+POST http://localhost:8080/create-token?username=Dune
+
+> {% client.global.set("auth_token", response.body); %}
+
+### Create Token with ttl in seconds
+POST http://localhost:8080/create-token-ttl?username=Dune&ttl=10
+
+> {% client.global.set("auth_token_ttl", response.body); %}
+
+### Message
+GET http://localhost:8080/message
+Authorization: Bearer {{auth_token}}
+
+### Error
+GET http://localhost:8080/error
+Authorization: Bearer {{auth_token_ttl}}
