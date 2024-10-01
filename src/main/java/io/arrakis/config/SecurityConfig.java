@@ -23,7 +23,7 @@ public class SecurityConfig {
         JwtAuthenticationFilter jwtTokenFilter = new JwtAuthenticationFilter(authenticationManager);
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/public/**", "/create-token", "/create-token-ttl")
+                        .requestMatchers("/create-token", "/create-token-ttl")
                         .permitAll().anyRequest().authenticated())
                 .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(config -> config.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))

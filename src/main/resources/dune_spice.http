@@ -15,3 +15,11 @@ Authorization: Bearer {{auth_token}}
 ### Error
 GET http://localhost:8080/error
 Authorization: Bearer {{auth_token_ttl}}
+
+### Retry
+GET http://localhost:8080/retry?message=
+Authorization: Bearer {{auth_token}}
+
+### Retry w/ message
+GET http://localhost:8080/retry?message=retry
+Authorization: Bearer {{auth_token}}

@@ -2,6 +2,8 @@ package io.arrakis.controller;
 
 import io.arrakis.auth.JWTUtil;
 import io.arrakis.exception.InvalidJwtTokenException;
+import io.arrakis.service.RetryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DuneController {
+
+    @Autowired
+    RetryService retryService;
 
 
     @PostMapping("/create-token")
@@ -36,5 +41,10 @@ public class DuneController {
     @GetMapping("/error")
     public ResponseEntity<String> error() {
         throw new InvalidJwtTokenException("error");
+    }
+
+    @GetMapping("/retry")
+    public String retry(@RequestParam String message) {
+        return retryService.retry(message);
     }
 }
